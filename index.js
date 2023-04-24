@@ -68,8 +68,7 @@ class TeamsNotifier extends Plugin {
       return null;
     }
 
-    // create snippet on gitlab
-    const response = await got.post(`${this.gitlabApiUrl}/snippets`, {
+    const request = {
       headers: {
         'Content-Type': 'application/json',
         'PRIVATE-TOKEN': this.token,
@@ -85,7 +84,15 @@ class TeamsNotifier extends Plugin {
           },
         ],
       }),
-    });
+    };
+
+    if(this.config.isDryRun) {
+      this.log.log(JSON.stringify(request, null, 2));
+      return;
+    }
+    
+    // create snippet on gitlab
+    const response = await got.post(`${this.gitlabApiUrl}/snippets`, request);
 
     return response.web_url;
   }
