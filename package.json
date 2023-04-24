@@ -1,0 +1,44 @@
+{
+  "name": "release-it-dir-change-teams-notifier",
+  "version": "0.0.0",
+  "description": "release-it-dir-change-teams-notifier",
+  "main": "index.js",
+  "scripts": {
+    "test": "bron test.js",
+    "release": "release-it"
+  },
+  "keywords": [
+    "release",
+    "release-it",
+    "release-it-plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oae/release-it-teams-notifier.git"
+  },
+  "homepage": "https://github.com/oae/release-it-teams-notifier#readme",
+  "bugs": "https://github.com/oae/release-it-teams-notifier/issues",
+  "author": "",
+  "peerDependencies": {
+    "release-it": "^14.11.8"
+  },
+  "devDependencies": {
+    "bron": "^2.0.3",
+    "release-it": "^14.11.8",
+    "sinon": "^12.0.1"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "release-it": {
+    "hooks": {
+      "before:init": "npm test"
+    }
+  },
+  "dependencies": {
+    "got": "^11.8.3",
+    "lodash": "^4.17.21",
+    "semver-parser": "^3.1.1"
+  }
+}
