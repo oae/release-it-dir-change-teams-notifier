@@ -69,7 +69,7 @@ class TeamsNotifier extends Plugin {
     }
 
     // create snippet on gitlab
-    const response = await got.post(this.gitlabApiUrl, {
+    const response = await got.post(`${this.gitlabApiUrl}/snippets`, {
       headers: {
         'Content-Type': 'application/json',
         'PRIVATE-TOKEN': this.token,
