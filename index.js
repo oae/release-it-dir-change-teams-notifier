@@ -77,12 +77,8 @@ class TeamsNotifier extends Plugin {
         title: `DB Change for ${name} between ${latestTag} and ${tagName}`,
         description: repository,
         visibility: 'public',
-        files: [
-          {
-            file_name: 'db_change.patch',
-            content: dbChange,
-          },
-        ],
+        file_name: 'db_change.patch',
+        content: dbChange,
       }),
     };
 
@@ -90,11 +86,12 @@ class TeamsNotifier extends Plugin {
       this.log.log(JSON.stringify(request, null, 2));
       return;
     }
-    
+
     // create snippet on gitlab
     const response = await got.post(`${this.gitlabApiUrl}/snippets`, request);
+    const snippet = JSON.parse(response.body);
 
-    return response.web_url;
+    return snippet.web_url;
   }
 
   getReleaseType() {
